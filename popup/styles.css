@@ -1,0 +1,14 @@
+.no-bullets {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+}
+.listText-style {
+    padding: 5px;
+    font-size: small;
+    display: inline-block;
+    width: calc(100% - 16px - 15px); /* total width - icon size - mergin */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
