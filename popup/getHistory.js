@@ -5,13 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function getFaviconURL(u) {
-    const url = new URL(chrome.runtime.getURL('/_favicon/'));
-    url.searchParams.set('pageUrl', u); // this encodes the URL as well
-    url.searchParams.set('size', '16');
-    return url.toString();
-  }
-
 const historyList = document.getElementById("history-list");
 
 chrome.history.search({ text: '', maxResults: 50 }, (results) => {
