@@ -26,6 +26,7 @@
         "history",
         "favicon",
         "scripting",
-        "tabs"
+        "tabs",
+        "activeTab"
     ]
 }
