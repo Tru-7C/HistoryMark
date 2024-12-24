@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.runtime.sendMessage({ action: "getDoubleClickedTabInfo" }, (response) => {
         document.getElementById("tabTitle").textContent = `Title: ${response.title}`;
         document.getElementById("tabURL").textContent = `URL: ${response.url}`;
+        document.getElementById("favicon").src = `${response.favicon}`;
     });
 });
 
