@@ -23,7 +23,7 @@
    },
    "web_accessible_resources": [
     {
-        "resources": ["icons/bookmark.svg"],
+        "resources": ["icons/checkmark.svg"],
         "matches": ["<all_urls>"]
     }
     ],

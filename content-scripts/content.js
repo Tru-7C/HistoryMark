@@ -1,5 +1,5 @@
 function setFavicon(svgContent) {
-    const base64Svg = btoa(unescape(encodeURIComponent(svgContent)));
+    const base64Svg = btoa(decodeURIComponent(encodeURIComponent(svgContent)));
 
     const head = document.head;
     head.querySelectorAll("link[rel~='icon']").forEach((el) => el.remove());
@@ -12,22 +12,21 @@ function setFavicon(svgContent) {
     head.appendChild(newFavicon);
 }
 
-document.addEventListener('dblclick', (event) => {
-    chrome.runtime.sendMessage({
+document.addEventListener('dblclick', async () => {
+    const response = await chrome.runtime.sendMessage({
         action: "tabDoubleClicked",
         tabInfo: { title: document.title, url: location.href }
     });
-});
-
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    if (message.action === 'sendBase64Favicon') {
-        var draw = SVG().addTo('body').size(100, 100);
-        draw.image(message.favicon).size(100, 100);
-        draw.rect(50, 50).attr({ fill: '#f06' }).move(50, 0);
-        
-        const markedFavicon = draw.svg();
-        setFavicon(markedFavicon);
-
-        return true;
-    }
+    
+    var draw = SVG().size(100, 100);
+    draw.image(response.favicon).size(100, 100);
+    var nested = draw.nested();
+    nested.svg(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">' +
+        '<path fill="#ff0000" stroke="#ff0000" stroke-width="80" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>' +
+        '</svg>'
+    ).size(70, 70).move(30, -10);
+    
+    const markedFavicon = draw.svg();
+    setFavicon(markedFavicon);
 });
