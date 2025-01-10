@@ -1,3 +1,4 @@
+// Set new Favicon to this document
 function setFavicon(svgContent) {
     const base64Svg = btoa(decodeURIComponent(encodeURIComponent(svgContent)));
 
@@ -12,6 +13,7 @@ function setFavicon(svgContent) {
     head.appendChild(newFavicon);
 }
 
+// Event Listener
 document.addEventListener('dblclick', async () => {
     const response = await chrome.runtime.sendMessage({
         action: "tabDoubleClicked",

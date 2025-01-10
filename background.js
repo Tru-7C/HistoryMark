@@ -1,4 +1,9 @@
-async function ConvertPngToBase64(imageURL, sendResponse) {
+chrome.sidePanel
+  .setPanelBehavior({ openPanelOnActionClick: true })
+  .catch((error) => console.error(error));
+
+ // Convert Png image To Base64 format
+function ConvertPngToBase64(imageURL, sendResponse) {
     try {
         fetch(imageURL)
         .then(response => response.blob())
@@ -14,11 +19,11 @@ async function ConvertPngToBase64(imageURL, sendResponse) {
     }
 }
 
+// Message Listener
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === 'tabDoubleClicked') {
         var doubleClickedTab = message.tabInfo;
 
-        // Convert PNG Favicon to Base64 format
         const faviconUrl = `https://www.google.com/s2/favicons?domain=${doubleClickedTab.url}`;
         ConvertPngToBase64(faviconUrl, sendResponse);
         return true;
