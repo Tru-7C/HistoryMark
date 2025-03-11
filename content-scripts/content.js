@@ -1,8 +1,6 @@
-document.addEventListener('dblclick', (event) => {    
-    chrome.runtime.sendMessage({
-        action: "tabDoubleClicked",
-        tabInfo: { title: document.title, url: location.href }
-    });
-
-    console.log(document.title);
+document.addEventListener('keydown', event => {
+    if (event.ctrlKey && event.code === 'KeyB') {
+        event.preventDefault();
+        console.log('<Ctrl + B> pressed.');
+    }
 });
