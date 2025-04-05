@@ -1,13 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-    chrome.runtime.sendMessage({ action: "getDoubleClickedTabInfo" }, (response) => {
-        document.getElementById("tabTitle").textContent = `Title: ${response.title}`;
-        document.getElementById("tabURL").textContent = `URL: ${response.url}`;
-    });
-});
-
 const historyList = document.getElementById("history-list");
+let threeMonthsAgo = new Date().getTime() - 90 * 24 * 60 * 60 * 1000;
 
-chrome.history.search({ text: '', maxResults: 50 }, (results) => {
+
+chrome.history.search({text: '', startTime: threeMonthsAgo, maxResults: 10000 }, (results) => {
     results.forEach(item => {
         const listItem = document.createElement("li");
 
