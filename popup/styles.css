@@ -1,14 +1,33 @@
-.no-bullets {
-    list-style: none;
-    padding: 10px;
-    margin: 0;
+li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    white-space: nowrap;
 }
-.listText-style {
-    padding: 5px;
-    font-size: small;
-    display: inline-block;
-    width: calc(100% - 16px - 15px); /* total width - icon size - mergin */
+
+li img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.listTitleStyle {
+    flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.listDateTimeStyle {
+    flex-shrink: 0;
+    margin-left: 8px;
+    color: #888;
+    font-size: 0.9em;
+}
+
+.no-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }

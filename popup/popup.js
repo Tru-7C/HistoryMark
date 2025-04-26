@@ -8,11 +8,24 @@ chrome.history.search({text: '', startTime: threeMonthsAgo, maxResults: 10000 },
 
         const faviconUrl = `https://www.google.com/s2/favicons?domain=${item.url}`;
         const urlTitle = item.title;
+        const visitTime = formatVisitTime(item.lastVisitTime);
 
         listItem.innerHTML = `
             <img src="${faviconUrl}" alt="Favicon">
-            <span class="listText-style">${urlTitle}</span>`;
+            <span class="listTitleStyle">${urlTitle}</span>
+            <span class="listDateTimeStyle">${visitTime}</span>`;
 
         historyList.appendChild(listItem);
     });
 });
+
+function formatVisitTime(lastVisitTime) {
+    const date = new Date(lastVisitTime);
+    const options = {
+        hour: 'numeric',  // "10"
+        minute: '2-digit',
+        hour12: true      // Use AM/PM format
+      };
+    
+      return date.toLocaleString('en-US', options); // "Apr 5, 10:28 PM"
+}
