@@ -10,10 +10,32 @@
         </style>
         <link rel="stylesheet" href="styles.css">
     </head>
-    <body>        
-        <h2>History</h2>
-        <ul id="history-list" class="no-bullets">
-        </ul>
+    <body>
+        <div class="container">
+            <div class="tabs">
+              <button id="bookmarkTab" class="tab active">Bookmark</button>
+              <button id="historyTab" class="tab">History</button>
+            </div>
+        
+            <div id="checkboxContainer" class="checkbox-container">
+              <label><input type="checkbox" name="filter"/>Show only bookmark</label>
+            </div>
+        
+            <div id="bookmarkContent" class="content active">
+                <ul id="bookmark-list" class="no-bullets">
+                </ul>
+            </div>
+
+            <div id="historyContent" class="content">
+                <ul id="history-list" class="no-bullets">
+                </ul>
+            </div>
+
+            <div class="buymecoffeeStyle">
+                <a href="https://coff.ee/mariko7c" target="_blank">  Buy me a coffee  </a>
+            </div>
+        </div>
+
         <script src="popup.js"></script>
     </body>
 </html>
